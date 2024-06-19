@@ -1,0 +1,7 @@
+banAllNames: false
+
+bannedMaterials:
+  - TRIPWIRE_HOOK
+
+bannedNames:
+  - "&4BadWord"
