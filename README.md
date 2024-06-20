@@ -8,9 +8,9 @@ Combination of BlockSpawnerEXP, PortalGuard, & StopRenaming. Thank you to the or
 **Link:** https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
   
 ### PortalGuard  
-**Author:** MetalliGoat @ https://github.com/MetallicGoat/  
+**Author:** MetallicGoat @ https://github.com/MetallicGoat/  
 **Link:** https://github.com/MetallicGoat/PortalGaurd/
   
 ### StopRenaming  
-**Author:** Xemor @ https://github.com/Xemorr/  
+**Author:** Xemor_ @ https://github.com/Xemorr/  
 **Link:** https://www.spigotmc.org/resources/stoprenaming.80430/

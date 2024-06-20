@@ -1,8 +1,7 @@
 package dev.tbm00.fix64;
 
 import dev.tbm00.fix64.commands.Fix64Command;
-import dev.tbm00.fix64.events.Rename;
-import dev.tbm00.fix64.events.Spawner;
+import dev.tbm00.fix64.events.*;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -27,9 +26,11 @@ public final class Fix64 extends JavaPlugin {
         this.saveDefaultConfig();
         FileConfiguration fileConfiguration = this.getConfig();
         Rename rename = new Rename(fileConfiguration, this);
+        Portal portal = new Portal(fileConfiguration, this);
 
         // Register Events
         this.getServer().getPluginManager().registerEvents(rename, this);
+        this.getServer().getPluginManager().registerEvents(portal, this);
         this.getServer().getPluginManager().registerEvents(new Spawner(), this);
 
         // Register Commands
