@@ -2,7 +2,7 @@ name: Fix64
 version: ${project.version}
 main: dev.tbm00.fix64.Fix64
 api-version: 1.13
-authors: [tbm00, Xemor_]
+authors: [tbm00, SainttX, MetallicGoat, Xemor_]
 description: This plugin allows you to stop certain items from being renamed
 commands:
   fix64:

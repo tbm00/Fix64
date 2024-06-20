@@ -1,7 +1,13 @@
-banAllNames: false
+### BlockSpawnerEXP by SainttX
+### https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
 
+### PortalGuard by SainttX
+### https://github.com/MetallicGoat/PortalGaurd/
+
+### StopRenaming by Xemor_
+### https://www.spigotmc.org/resources/stoprenaming.80430/
+banAllNames: false
 bannedMaterials:
   - TRIPWIRE_HOOK
-
 bannedNames:
   - "&4BadWord"
