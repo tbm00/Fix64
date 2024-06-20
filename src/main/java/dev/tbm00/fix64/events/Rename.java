@@ -14,12 +14,12 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Rename implements Listener {
-
+    Fix64 fix64;
+    FileConfiguration fileConfiguration;
+    boolean enabled;
     HashSet<String> bannedNames = new HashSet<>();
     EnumSet<Material> bannedMaterials = EnumSet.noneOf(Material.class);
     boolean banAll;
-    FileConfiguration fileConfiguration;
-    Fix64 fix64;
 
     public Rename(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
@@ -34,9 +34,17 @@ public class Rename implements Listener {
     }
 
     public void loadConfig() {
+        try { 
+            enabled = fileConfiguration.getBoolean("enableStopRenaming"); 
+        } catch (Exception e) {
+            fix64.getLogger().warning("Exception with enableStopRenaming!");
+			return;
+        }
+
         this.banAll = fileConfiguration.getBoolean("banAllNames");
         List<String> bannedNames = fileConfiguration.getStringList("bannedNames");
         List<String> bannedMaterials = fileConfiguration.getStringList("bannedMaterials");
+        
         for (String string : bannedNames) {
             this.bannedNames.add(string);
         }
@@ -48,6 +56,7 @@ public class Rename implements Listener {
 
     @EventHandler
     public void onAnvil(InventoryClickEvent e) {
+        if (enabled == false) return;
         if (e.getClickedInventory() instanceof AnvilInventory) {
             AnvilInventory anvil = (AnvilInventory) e.getClickedInventory();
             if (e.getSlotType() == InventoryType.SlotType.RESULT) {

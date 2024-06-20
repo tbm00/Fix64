@@ -1,16 +1,15 @@
 ### BlockSpawnerEXP by SainttX
 ### https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
 
-### PortalGuard by SainttX
-### https://github.com/MetallicGoat/PortalGaurd/
+enbaleBlockSpawnerEXP: true
 
-# Entities blacklisted from using portals
-# Possible values listed here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
+
+### PortalGaurd by SainttX
+### https://github.com/MetallicGoat/PortalGaurd/
+### Typo in guard is by the original author, lol
+
+enbalePortalGaurd: true
 bannedPortalEntities:
-  #- "ITEM"
-  #- "DISPLAY_ITEM"
-  #- "DISPLAY_BLOCK"
-  - "DROPPED_ITEM"
   - "BOAT"
   - "CHEST_BOAT"
   - "MINECART"
@@ -20,10 +19,13 @@ bannedPortalEntities:
   - "MINECART_TNT"
   - "MINECART_HOPPER"
   - "MINECART_MOB_SPAWNER"
+  # https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
+
 
 ### StopRenaming by Xemor_
 ### https://www.spigotmc.org/resources/stoprenaming.80430/
 
+enbaleStopRenaming: true
 banAllNames: false
 bannedMaterials:
   - TRIPWIRE_HOOK

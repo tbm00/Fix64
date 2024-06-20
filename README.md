@@ -6,7 +6,7 @@ Thank you to the original developers. This is a combination of the following thr
 **Author:** SainttX @ https://github.com/sainttx/  
 **Link:** https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
   
-### PortalGuard  
+### PortalGaurd  
 **Author:** MetallicGoat @ https://github.com/MetallicGoat/  
 **Link:** https://github.com/MetallicGoat/PortalGaurd/
   

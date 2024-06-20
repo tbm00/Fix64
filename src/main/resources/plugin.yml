@@ -7,7 +7,7 @@ description: This plugin allows you to stop certain items from being renamed
 commands:
   fix64:
     description: the root command of this entire plugin
-    usage: /fix64 <reload (only subcommand)>
+    usage: /fix64 reload
 permissions:
   fix64.reload:
     description: This permission gives you the ability to reload the config

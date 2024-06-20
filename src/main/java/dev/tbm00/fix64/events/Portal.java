@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Portal implements Listener {
-    private final List<EntityType> bannedEntities = new ArrayList<>();
-    private FileConfiguration fileConfiguration;
-    private Fix64 fix64;
+    Fix64 fix64;
+    FileConfiguration fileConfiguration;
+    List<EntityType> bannedEntities = new ArrayList<>();
+    boolean enabled;
     
     public Portal(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
@@ -22,10 +23,18 @@ public class Portal implements Listener {
     }
 
     public void loadConfig() {
+        // Check if enabled
+        try { 
+            enabled = fileConfiguration.getBoolean("enablePortalGaurd"); 
+        } catch (Exception e) {
+            fix64.getLogger().warning("Exception with enablePortalGaurd!");
+			return;
+        }
+
         // Load banned entities type array
         List<String> entityTypes = fileConfiguration.getStringList("bannedPortalEntities");
         if (entityTypes == null) {
-			fix64.getLogger().warning("Your PortalGuard config seems to be missing the 'bannedPortalEntities' config!");
+			fix64.getLogger().warning("Your PortalGaurd config seems to be missing the 'bannedPortalEntities' config!");
 			return;
 		}
         for (String type : entityTypes) {
@@ -40,6 +49,7 @@ public class Portal implements Listener {
 
 	@EventHandler
 	public void onPortalUse(EntityPortalEvent event) {
+        if (enabled == false) return;
 		if (bannedEntities.contains(event.getEntityType())) {
 			event.setCancelled(true);
 		}

@@ -17,7 +17,7 @@ public final class Fix64 extends JavaPlugin {
             "------------------------------",
             pdf.getName() + " compiled by tbm00",
             "BlockSpawnerEXP by SainttX",
-            "PortalGuard by MetallicGoat",
+            "PortalGaurd by MetallicGoat",
             "StopRenaming by Xemor_",
             "------------------------------"
 		);
@@ -27,11 +27,12 @@ public final class Fix64 extends JavaPlugin {
         FileConfiguration fileConfiguration = this.getConfig();
         Rename rename = new Rename(fileConfiguration, this);
         Portal portal = new Portal(fileConfiguration, this);
+        Spawner spawner = new Spawner(fileConfiguration, this);
 
         // Register Events
         this.getServer().getPluginManager().registerEvents(rename, this);
         this.getServer().getPluginManager().registerEvents(portal, this);
-        this.getServer().getPluginManager().registerEvents(new Spawner(), this);
+        this.getServer().getPluginManager().registerEvents(spawner, this);
 
         // Register Commands
         Fix64Command fix64Command = new Fix64Command(rename);
