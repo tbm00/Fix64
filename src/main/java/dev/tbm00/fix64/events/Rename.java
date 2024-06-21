@@ -8,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.AnvilInventory;
-
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
@@ -27,15 +26,9 @@ public class Rename implements Listener {
         loadConfig();
     }
 
-    public void reloadConfig() {
-        fix64.reloadConfig();
-        this.fileConfiguration = fix64.getConfig();
-        loadConfig();
-    }
-
     public void loadConfig() {
         try { 
-            enabled = fileConfiguration.getBoolean("enableStopRenaming"); 
+            this.enabled = fileConfiguration.getBoolean("enableStopRenaming");
         } catch (Exception e) {
             fix64.getLogger().warning("Exception with enableStopRenaming!");
 			return;
@@ -52,6 +45,12 @@ public class Rename implements Listener {
             Material material = Material.getMaterial(string);
             this.bannedMaterials.add(material);
         }
+    }
+
+    public void reloadConfig() {
+        fix64.reloadConfig();
+        this.fileConfiguration = fix64.getConfig();
+        loadConfig();
     }
 
     @EventHandler

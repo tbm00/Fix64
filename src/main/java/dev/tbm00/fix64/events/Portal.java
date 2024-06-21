@@ -6,7 +6,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEvent;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class Portal implements Listener {
     public void loadConfig() {
         // Check if enabled
         try { 
-            enabled = fileConfiguration.getBoolean("enablePortalGaurd"); 
+            this.enabled = fileConfiguration.getBoolean("enablePortalGaurd");
         } catch (Exception e) {
             fix64.getLogger().warning("Exception with enablePortalGaurd!");
 			return;
@@ -47,11 +46,17 @@ public class Portal implements Listener {
         }
     }
 
+    public void reloadConfig() {
+        fix64.reloadConfig();
+        this.fileConfiguration = fix64.getConfig();
+        loadConfig();
+    }
+
 	@EventHandler
 	public void onPortalUse(EntityPortalEvent event) {
         if (enabled == false) return;
 		if (bannedEntities.contains(event.getEntityType())) {
-			event.setCancelled(true);
+            event.setCancelled(true);
 		}
 	}
 }

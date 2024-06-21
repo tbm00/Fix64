@@ -35,7 +35,7 @@ public final class Fix64 extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(spawner, this);
 
         // Register Commands
-        Fix64Command fix64Command = new Fix64Command(rename);
+        Fix64Command fix64Command = new Fix64Command(rename, portal, spawner);
         PluginCommand fix64 = this.getCommand("fix64");
         fix64.setTabCompleter(fix64Command);
         fix64.setExecutor(fix64Command);
