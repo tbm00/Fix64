@@ -1,13 +1,10 @@
 ### BlockSpawnerEXP by SainttX
 ### https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
-
 enableBlockSpawnerEXP: true
 
-
-### PortalGaurd by SainttX
+### PortalGaurd by MetallicGoat
 ### https://github.com/MetallicGoat/PortalGaurd/
 ### Misspelling guard is by the original author
-
 enablePortalGaurd: true
 bannedPortalEntities:
   - "BOAT"
@@ -20,17 +17,12 @@ bannedPortalEntities:
   - "MINECART_HOPPER"
   - "MINECART_MOB_SPAWNER"
   - "DROPPED_ITEM"
-  - "ITEM"
   - "ITEM_DISPLAY"
   - "BLOCK_DISPLAY"
-  - "DISPALY_ITEM"
-  - "DISPALY_BLOCK"
   # https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
-
 
 ### StopRenaming by Xemor_
 ### https://www.spigotmc.org/resources/stoprenaming.80430/
-
 enableStopRenaming: true
 banAllNames: false
 bannedMaterials:

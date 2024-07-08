@@ -1,13 +1,14 @@
 package dev.tbm00.fix64.events;
 
-import dev.tbm00.fix64.Fix64;
+import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPortalEvent;
-import java.util.ArrayList;
-import java.util.List;
+
+import dev.tbm00.fix64.Fix64;
 
 public class Portal implements Listener {
     Fix64 fix64;

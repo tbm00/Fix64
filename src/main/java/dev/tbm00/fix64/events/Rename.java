@@ -1,6 +1,8 @@
 package dev.tbm00.fix64.events;
 
-import dev.tbm00.fix64.Fix64;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
@@ -8,9 +10,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.AnvilInventory;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
+
+
+import dev.tbm00.fix64.Fix64;
 
 public class Rename implements Listener {
     Fix64 fix64;

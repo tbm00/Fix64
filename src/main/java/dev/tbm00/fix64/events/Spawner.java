@@ -1,12 +1,13 @@
 package dev.tbm00.fix64.events;
 
-import dev.tbm00.fix64.Fix64;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+
+import dev.tbm00.fix64.Fix64;
 
 public class Spawner implements Listener {
     Fix64 fix64;

@@ -1,15 +1,15 @@
 package dev.tbm00.fix64.commands;
 
-import dev.tbm00.fix64.events.*;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabExecutor;
 import java.util.ArrayList;
 import java.util.List;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 
-public class Fix64Command implements CommandExecutor, TabExecutor {
+import dev.tbm00.fix64.events.*;
+
+public class Fix64Command implements TabExecutor {
 
     public String[] subCommands = new String[]{"reload"};
     private Rename rename;
@@ -33,7 +33,7 @@ public class Fix64Command implements CommandExecutor, TabExecutor {
                     rename.reloadConfig();
                     portal.reloadConfig();
                     spawner.reloadConfig();
-                    sender.sendMessage(ChatColor.GREEN + "You successfully reloaded the plugin!");
+                    sender.sendMessage(ChatColor.GREEN + "You successfully reloaded Fix64!");
                 }
                 else {
                     sender.sendMessage(ChatColor.RED + "No permission!");

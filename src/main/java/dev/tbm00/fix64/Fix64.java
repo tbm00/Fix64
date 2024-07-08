@@ -1,11 +1,13 @@
 package dev.tbm00.fix64;
 
-import dev.tbm00.fix64.commands.Fix64Command;
-import dev.tbm00.fix64.events.*;
+import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import dev.tbm00.fix64.commands.Fix64Command;
+import dev.tbm00.fix64.events.*;
 
 public final class Fix64 extends JavaPlugin {
 
@@ -14,12 +16,12 @@ public final class Fix64 extends JavaPlugin {
         // Startup Message
         final PluginDescriptionFile pdf = this.getDescription();
 		log(
-            "------------------------------",
-            pdf.getName() + " compiled by tbm00",
-            "BlockSpawnerEXP by SainttX",
-            "PortalGaurd by MetallicGoat",
-            "StopRenaming by Xemor_",
-            "------------------------------"
+            ChatColor.DARK_PURPLE + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-",
+            pdf.getName() + " v" + pdf.getVersion() + " compiled by tbm00",
+            "- BlockSpawnerEXP by SainttX",
+            "- PortalGaurd by MetallicGoat",
+            "- StopRenaming by Xemor_",
+            ChatColor.DARK_PURPLE + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
 		);
 
         // Load Config
@@ -41,13 +43,8 @@ public final class Fix64 extends JavaPlugin {
         fix64.setExecutor(fix64Command);
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
     private void log(String... strings) {
 		for (String s : strings)
-			getLogger().info(s);
+            getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + s);
 	}
 }
