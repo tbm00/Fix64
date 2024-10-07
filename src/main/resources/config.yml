@@ -1,10 +1,17 @@
+### Fix64 v1.4 by tbm00
+### https://github.com/tbm00/Fix64/
+### Prevents players from changing spawner mob types with spawn eggs
+enableBlockSpawnerConversion: true
+
 ### BlockSpawnerEXP by SainttX
 ### https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
+### Prevents spawners from dropping exp when broken, thus disabling exp dupes
+### Updated for 1.21's trial spawners by tbm00
 enableBlockSpawnerEXP: true
 
 ### PortalGaurd by MetallicGoat
 ### https://github.com/MetallicGoat/PortalGaurd/
-### Misspelling guard is by the original author
+### Prevents entities from teleporting in portals, thus disabling some chunk loaders
 enablePortalGaurd: true
 bannedPortalEntities:
   - "BOAT"
@@ -23,6 +30,8 @@ bannedPortalEntities:
 
 ### StopRenaming by Xemor_
 ### https://www.spigotmc.org/resources/stoprenaming.80430/
+### Prevents players from renaming of items in anvil based on item's name & material
+### Updated for 1.21+ by tbm00 (fix deprecated functions)
 enableStopRenaming: true
 banAllNames: false
 bannedMaterials:

@@ -10,17 +10,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.AnvilInventory;
-
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import dev.tbm00.fix64.Fix64;
 
 public class Rename implements Listener {
-    Fix64 fix64;
-    FileConfiguration fileConfiguration;
-    boolean enabled;
-    HashSet<String> bannedNames = new HashSet<>();
-    EnumSet<Material> bannedMaterials = EnumSet.noneOf(Material.class);
-    boolean banAll;
+    private final Fix64 fix64;
+    private FileConfiguration fileConfiguration;
+    private boolean enabled;
+    private HashSet<String> bannedNames = new HashSet<>();
+    private EnumSet<Material> bannedMaterials = EnumSet.noneOf(Material.class);
+    private boolean banAll;
 
     public Rename(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
@@ -58,24 +59,25 @@ public class Rename implements Listener {
     @EventHandler
     public void onAnvil(InventoryClickEvent e) {
         if (enabled == false) return;
-        if (e.getClickedInventory() instanceof AnvilInventory) {
-            AnvilInventory anvil = (AnvilInventory) e.getClickedInventory();
-            if (e.getSlotType() == InventoryType.SlotType.RESULT) {
-                if (anvil.getRenameText().isEmpty()) {
-                    return;
-                }
-                if (banAll) {
-                    e.setCancelled(true);
-                }
-                else if (bannedNames.contains(anvil.getRenameText())) {
-                    e.setCancelled(true);
-                }
-                else if (bannedMaterials.contains(e.getCurrentItem().getType())) {
-                    e.setCancelled(true);
-                }
-                return;
+        if (!(e.getClickedInventory() instanceof AnvilInventory)) return;
+        if (e.getSlotType() == InventoryType.SlotType.RESULT) {
+            ItemStack resultItem = e.getCurrentItem();
+            if (resultItem == null || !resultItem.hasItemMeta()) return;
+
+            ItemMeta meta = resultItem.getItemMeta();
+            String renameText = "";
+
+            if (meta.hasDisplayName()) {
+                renameText = meta.getDisplayName();
             }
+
+            if (renameText.isEmpty()) return;
+            if (banAll) e.setCancelled(true);
+            else if (bannedNames.contains(renameText))
+                e.setCancelled(true);
+            else if (bannedMaterials.contains(resultItem.getType()))
+                e.setCancelled(true);
+            return;
         }
     }
-
 }

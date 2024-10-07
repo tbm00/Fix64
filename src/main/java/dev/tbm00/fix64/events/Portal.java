@@ -11,10 +11,10 @@ import org.bukkit.event.entity.EntityPortalEvent;
 import dev.tbm00.fix64.Fix64;
 
 public class Portal implements Listener {
-    Fix64 fix64;
-    FileConfiguration fileConfiguration;
-    List<EntityType> bannedEntities = new ArrayList<>();
-    boolean enabled;
+    private final Fix64 fix64;
+    private FileConfiguration fileConfiguration;
+    private List<EntityType> bannedEntities = new ArrayList<>();
+    private boolean enabled;
     
     public Portal(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;

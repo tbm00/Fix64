@@ -17,7 +17,7 @@ public final class Fix64 extends JavaPlugin {
         final PluginDescriptionFile pdf = this.getDescription();
 		log(
             ChatColor.DARK_PURPLE + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-",
-            pdf.getName() + " v" + pdf.getVersion() + " compiled by tbm00",
+            pdf.getName() + " v" + pdf.getVersion() + " by tbm00",
             "- BlockSpawnerEXP by SainttX",
             "- PortalGaurd by MetallicGoat",
             "- StopRenaming by Xemor_",
