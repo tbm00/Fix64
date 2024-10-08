@@ -4,8 +4,9 @@ A spigot plugin that blocks a few exploits.
 Thank you to the original developers; this is a combination of EventHandlers from three open source plugins, plus some of my own.
 
 ## Included
-#### Fix64 *- Base Plugin*
+#### Fix64 *- Base Plugin*  
 - Prevents players from changing spawner mob types with spawn eggs
+- Prevents players from beaking trial spawners
 - **Author:** tbm00 @ https://github.com/tbm00/  
 - **Link:** https://github.com/tbm00/Fix64/
 
@@ -21,7 +22,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - **Link:** https://github.com/MetallicGoat/PortalGaurd/
   
 #### StopRenaming  
-- Prevents players from renaming of items in anvil based on item's name & material
+- Prevents players from renaming items in anvils based on item's name & material
 - Updated for 1.21+ by tbm00 (fix deprecated functions)
 - **Author:** Xemor_ @ https://github.com/Xemorr/  
 - **Link:** https://www.spigotmc.org/resources/stoprenaming.80430/
@@ -41,10 +42,12 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Config
 ```
-### Fix64 v1.4 by tbm00
+### Fix64 v1.5 by tbm00
 ### https://github.com/tbm00/Fix64/
 ### Prevents players from changing spawner mob types with spawn eggs
+### Prevents players from breaking trial spawners
 enableBlockSpawnerConversion: true
+enableBlockTrialSpawnerBreak: true
 
 ### BlockSpawnerEXP by SainttX
 ### https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
@@ -73,7 +76,7 @@ bannedPortalEntities:
 
 ### StopRenaming by Xemor_
 ### https://www.spigotmc.org/resources/stoprenaming.80430/
-### Prevents players from renaming of items in anvil based on item's name & material
+### Prevents players from renaming items in anvils based on item's name & material
 ### Updated for 1.21+ by tbm00 (fix deprecated functions)
 enableStopRenaming: true
 banAllNames: false

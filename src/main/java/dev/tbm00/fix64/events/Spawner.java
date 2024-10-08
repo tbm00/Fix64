@@ -20,8 +20,9 @@ import dev.tbm00.fix64.Fix64;
 public class Spawner implements Listener {
     private final Fix64 fix64;
     private FileConfiguration fileConfiguration;
-    private boolean expEnabled;
-    private boolean eggEnabled;
+    private boolean trialBlockEnabled;
+    private boolean expBlockEnabled;
+    private boolean eggBlockEnabled;
     private Set<Material> SPAWN_EGGS = EnumSet.noneOf(Material.class);
 
     public Spawner(FileConfiguration fileConfiguration, Fix64 fix64) {
@@ -31,20 +32,25 @@ public class Spawner implements Listener {
     }
 
     public void loadConfig() {
-        // Check if enabled
         try { 
-            this.expEnabled = fileConfiguration.getBoolean("enableBlockSpawnerEXP");
+            this.expBlockEnabled = fileConfiguration.getBoolean("enableBlockSpawnerEXP");
         } catch (Exception e) {
-            fix64.getLogger().warning("Exception running enableBlockSpawnerEXP!");
+            fix64.getLogger().warning("Exception getting enableBlockSpawnerEXP!");
 			return;
         }
         try { 
-            this.eggEnabled = fileConfiguration.getBoolean("enableBlockSpawnerConversion");
+            this.eggBlockEnabled = fileConfiguration.getBoolean("enableBlockSpawnerConversion");
         } catch (Exception e) {
-            fix64.getLogger().warning("Exception running enableBlockSpawnerConversion!");
+            fix64.getLogger().warning("Exception getting enableBlockSpawnerConversion!");
 			return;
         }
-        if (eggEnabled) {
+        try { 
+            this.trialBlockEnabled = fileConfiguration.getBoolean("enableBlockTrialSpawnerBreak");
+        } catch (Exception e) {
+            fix64.getLogger().warning("Exception getting enableBlockTrialSpawnerBreak!");
+			return;
+        }
+        if (eggBlockEnabled) {
             for (Material material : Material.values()) {
                 if (material.name().endsWith("_SPAWN_EGG")) {
                     SPAWN_EGGS.add(material);
@@ -61,7 +67,7 @@ public class Spawner implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (expEnabled == false) return;
+        if (expBlockEnabled == false) return;
         Block block = event.getBlock();
         if (
             block.getType() == Material.SPAWNER ||
@@ -69,11 +75,14 @@ public class Spawner implements Listener {
             block.getType() == Material.LEGACY_MOB_SPAWNER ) {
             event.setExpToDrop(0);
         }
+        if (trialBlockEnabled && block.getType() == Material.TRIAL_SPAWNER) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler
     public void onItemUse(PlayerInteractEvent event) {
-        if (eggEnabled == false) return;
+        if (eggBlockEnabled == false) return;
 
         Action action = event.getAction();
         if (action != Action.RIGHT_CLICK_BLOCK && action != Action.LEFT_CLICK_BLOCK) return;

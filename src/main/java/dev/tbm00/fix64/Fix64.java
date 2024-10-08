@@ -10,7 +10,6 @@ import dev.tbm00.fix64.commands.Fix64Command;
 import dev.tbm00.fix64.events.*;
 
 public final class Fix64 extends JavaPlugin {
-
     @Override
     public void onEnable() {
         // Startup Message

@@ -33,7 +33,7 @@ public class Rename implements Listener {
         try { 
             this.enabled = fileConfiguration.getBoolean("enableStopRenaming");
         } catch (Exception e) {
-            fix64.getLogger().warning("Exception with enableStopRenaming!");
+            fix64.getLogger().warning("Exception getting enableStopRenaming!");
 			return;
         }
 
