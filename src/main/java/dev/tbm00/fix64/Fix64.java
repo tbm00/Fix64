@@ -29,6 +29,7 @@ public final class Fix64 extends JavaPlugin {
         Rename rename = new Rename(fileConfiguration, this);
         Portal portal = new Portal(fileConfiguration, this);
         Spawner spawner = new Spawner(fileConfiguration, this);
+        ChunkUnloader chunkUnloader = new ChunkUnloader(fileConfiguration, this);
 
         // Register Events
         this.getServer().getPluginManager().registerEvents(rename, this);
@@ -36,7 +37,7 @@ public final class Fix64 extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(spawner, this);
 
         // Register Commands
-        Fix64Command fix64Command = new Fix64Command(rename, portal, spawner);
+        Fix64Command fix64Command = new Fix64Command(rename, portal, spawner, chunkUnloader);
         PluginCommand fix64 = this.getCommand("fix64");
         fix64.setTabCompleter(fix64Command);
         fix64.setExecutor(fix64Command);

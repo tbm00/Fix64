@@ -3,51 +3,59 @@ A spigot plugin that blocks a few exploits.
 
 Thank you to the original developers; this is a combination of EventHandlers from three open source plugins, plus some of my own.
 
+
 ## Included
 #### Fix64 *- Base Plugin*  
+- **Author:** tbm00 @ https://github.com/tbm00/  
+- **Link:** https://github.com/tbm00/Fix64/  
 - Prevents players from changing spawner mob types with spawn eggs
 - Prevents players from beaking trial spawners
-- **Author:** tbm00 @ https://github.com/tbm00/  
-- **Link:** https://github.com/tbm00/Fix64/
+- Unloads chunks without players on interval, thus minimizing chunk loaders
 
 #### BlockSpawnerEXP  
+- **Author:** SainttX @ https://github.com/sainttx/  
+- **Link:** https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/  
 - Prevents spawners from dropping exp when broken, thus disabling exp dupes
 - Updated for 1.21's trial spawners by tbm00
-- **Author:** SainttX @ https://github.com/sainttx/  
-- **Link:** https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
   
 #### PortalGaurd  
-- Prevents entities from teleporting in portals, thus disabling some chunk loaders
 - **Author:** MetallicGoat @ https://github.com/MetallicGoat/  
-- **Link:** https://github.com/MetallicGoat/PortalGaurd/
+- **Link:** https://github.com/MetallicGoat/PortalGaurd/  
+- Prevents entities from teleporting in portals, thus disabling some chunk loaders
   
 #### StopRenaming  
+- **Author:** Xemor_ @ https://github.com/Xemorr/  
+- **Link:** https://www.spigotmc.org/resources/stoprenaming.80430/  
 - Prevents players from renaming items in anvils based on item's name & material
 - Updated for 1.21+ by tbm00 (fix deprecated functions)
-- **Author:** Xemor_ @ https://github.com/Xemorr/  
-- **Link:** https://www.spigotmc.org/resources/stoprenaming.80430/
+
 
 ## Dependencies
 - **Java 17+**: REQUIRED
 - **Spigot 1.20.4+**: UNTESTED ON OLDER VERSIONS
 
-## Commands
-#### Admin Commands
-- `/fix64 reload` Reload the plugin's config
 
-## Permissions
-#### Admin Permissions
+## Commands & Permissions
+#### Commands
+- `/fix64 reload` Reload the plugin's config
+#### Permissions
 - `fix64.reload` Ability to use reload the config *(default: OP)*
 - `fix64.eggconversion` Ability to convert spawners with spawn eggs *(default: OP)*
 
+
 ## Config
 ```
-### Fix64 v1.5 by tbm00
+### Fix64 v1.6 by tbm00
 ### https://github.com/tbm00/Fix64/
 ### Prevents players from changing spawner mob types with spawn eggs
 ### Prevents players from breaking trial spawners
+### Unloads chunks without players on interval
 enableBlockSpawnerConversion: true
 enableBlockTrialSpawnerBreak: true
+chunkUnloader:
+  enabled: true
+  timer: 480 # seconds
+  radius: 16 # chunks
 
 ### BlockSpawnerEXP by SainttX
 ### https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/

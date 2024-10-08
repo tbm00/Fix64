@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
+import dev.tbm00.fix64.ChunkUnloader;
 import dev.tbm00.fix64.events.*;
 
 public class Fix64Command implements TabExecutor {
@@ -15,11 +16,13 @@ public class Fix64Command implements TabExecutor {
     private Rename rename;
     private Portal portal;
     private Spawner spawner;
+    private ChunkUnloader chunkUnloader;
 
-    public Fix64Command(Rename rename, Portal portal, Spawner spawner) {
+    public Fix64Command(Rename rename, Portal portal, Spawner spawner, ChunkUnloader chunkUnloader) {
         this.rename = rename;
         this.portal = portal;
         this.spawner = spawner;
+        this.chunkUnloader = chunkUnloader;
     }
 
     @Override
@@ -33,6 +36,7 @@ public class Fix64Command implements TabExecutor {
                     rename.reloadConfig();
                     portal.reloadConfig();
                     spawner.reloadConfig();
+                    chunkUnloader.reloadConfig();
                     sender.sendMessage(ChatColor.GREEN + "You successfully reloaded Fix64!");
                 }
                 else {
