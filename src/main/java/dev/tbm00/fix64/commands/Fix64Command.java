@@ -17,12 +17,14 @@ public class Fix64Command implements TabExecutor {
     private Portal portal;
     private Spawner spawner;
     private ChunkUnloader chunkUnloader;
+    private RedstonePlace redstonePlace;
 
-    public Fix64Command(Rename rename, Portal portal, Spawner spawner, ChunkUnloader chunkUnloader) {
+    public Fix64Command(Rename rename, Portal portal, Spawner spawner, ChunkUnloader chunkUnloader, RedstonePlace redstonePlace) {
         this.rename = rename;
         this.portal = portal;
         this.spawner = spawner;
         this.chunkUnloader = chunkUnloader;
+        this.redstonePlace = redstonePlace;
     }
 
     @Override
@@ -37,6 +39,7 @@ public class Fix64Command implements TabExecutor {
                     portal.reloadConfig();
                     spawner.reloadConfig();
                     chunkUnloader.reloadConfig();
+                    redstonePlace.reloadConfig();
                     sender.sendMessage(ChatColor.GREEN + "You successfully reloaded Fix64!");
                 }
                 else {
