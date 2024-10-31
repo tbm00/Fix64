@@ -10,7 +10,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - **Link:** https://github.com/tbm00/Fix64/  
 - Prevents players from breaking trial spawners
 - Prevents players from changing spawner mob types with spawn eggs
-- Prevents players from placing redstone on trapdoors, thus miniming light block dupes
+- Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 - Unloads chunks without nearby players on interval, thus minimizing chunk loaders
 
 #### BlockSpawnerEXP  
