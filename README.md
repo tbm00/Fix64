@@ -1,10 +1,21 @@
-# Fix64  
+
+
+# Fix64 <img align="left" src="icon.png" alt="Item64 Icon" width="40"/>
 A spigot plugin that blocks a few exploits.
 
 Thank you to the original developers; this is a combination of EventHandlers from three open source plugins, plus some of my own.
 
 
-## Included
+## Configurable Features
+- **Disable Chunk Loaders:** unload unused chunks on an interval, and/or disable entity portal usage
+- **Prevent Item Renaming:** block specific items and/or names
+- **Prevent Light Block Redstone Dupe:** stop placing redstone on trapdoors with lights above it
+- **Prevent Breaking Trial Spawners**
+- **Disable Spawner-Egg Conversion**
+- **Disable Spawner Exp Orbs**
+
+
+## Included Plugins
 #### Fix64 *- Base Plugin*  
 - **Author:** tbm00 @ https://github.com/tbm00/  
 - **Link:** https://github.com/tbm00/Fix64/  
