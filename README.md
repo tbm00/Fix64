@@ -1,7 +1,7 @@
 
 
 # Fix64 <img align="left" src="icon.png" alt="Item64 Icon" width="40"/>
-A spigot plugin that blocks a few exploits.
+A spigot plugin that blocks exploits.
 
 Thank you to the original developers; this is a combination of EventHandlers from three open source plugins, plus some of my own.
 
