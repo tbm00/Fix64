@@ -57,28 +57,27 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Config
 ```
-### Fix64 v1.7 by tbm00
-### https://github.com/tbm00/Fix64/
-### Prevents players from breaking trial spawners
+# Fix64 v1.7.1 by @tbm00
+# https://github.com/tbm00/Fix64/
+
+### Prevents spawners from dropping exp when broken, thus disabling exp dupes (includes 1.21 trial spawners)
+enableBlockSpawnerEXP: true
+
 ### Prevents players from changing spawner mob types with spawn eggs
-### Prevents players from placing redstone on trapdoors, thus miniming light block dupes
-### Unloads chunks without nearby players on interval, thus minimizing chunk loaders
 enableBlockSpawnerConversion: true
+
+### Prevents players from breaking trial spawners
 enableBlockTrialSpawnerBreak: true
+
+### Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 fixLightTrapdoorDupe: true
+
+### Unloads chunks without nearby players on interval, thus minimizing chunk loaders
 chunkUnloader:
   enabled: true
   timer: 480 # seconds
   radius: 16 # chunks
 
-### BlockSpawnerEXP by SainttX
-### https://www.spigotmc.org/threads/disable-xp-from-breaking-mob-spawners.19277/
-### Prevents spawners from dropping exp when broken, thus disabling exp dupes
-### Updated for 1.21's trial spawners by tbm00
-enableBlockSpawnerEXP: true
-
-### PortalGaurd by MetallicGoat
-### https://github.com/MetallicGoat/PortalGaurd/
 ### Prevents entities from teleporting in portals, thus disabling some chunk loaders
 enablePortalGaurd: true
 bannedPortalEntities:
@@ -96,14 +95,11 @@ bannedPortalEntities:
   - "BLOCK_DISPLAY"
   # https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
 
-### StopRenaming by Xemor_
-### https://www.spigotmc.org/resources/stoprenaming.80430/
 ### Prevents players from renaming items in anvils based on item's name & material
-### Updated for 1.21+ by tbm00 (fix deprecated functions)
 enableStopRenaming: true
 banAllNames: false
 bannedMaterials:
-  - TRIPWIRE_HOOK
+  - "TRIPWIRE_HOOK"
 bannedNames:
   - "&4BadWord"
 ```

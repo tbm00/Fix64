@@ -8,6 +8,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
@@ -23,7 +24,6 @@ public class RedstonePlace implements Listener {
         this.fileConfiguration = fileConfiguration;
         this.fix64 = fix64;
         loadConfig();
-        enabled = true;
     }
 
     public void loadConfig() {
@@ -39,6 +39,7 @@ public class RedstonePlace implements Listener {
                 if (material.name().endsWith("_TRAPDOOR")) {
                     TRAPDOORS.add(material);
                 }
+                TRAPDOORS.add(Material.LIGHT);
             }
         }
     }
@@ -49,7 +50,7 @@ public class RedstonePlace implements Listener {
         loadConfig();
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onRedstonePlace(BlockPlaceEvent event) {
         if (event.getBlock().getType()!=Material.REDSTONE_WIRE) return;
         if (!enabled) return;
