@@ -47,7 +47,7 @@ public class ChunkUnloader {
         new BukkitRunnable() {
             @Override
             public void run() {
-                fix64.getLogger().info("[auto] Unloading empty chunks...");
+                //sfix64.getLogger().info("[auto] Unloading empty chunks...");
                 try {
                     int chunksUnloaded = unloadChunks();
                     fix64.getLogger().info("[auto] Unloaded " + chunksUnloaded + " empty chunks!");
