@@ -88,14 +88,14 @@ public class Spawner implements Listener {
         if (action != Action.RIGHT_CLICK_BLOCK && action != Action.LEFT_CLICK_BLOCK) return;
 
         Block block = event.getClickedBlock();
-        if (block == null || block.getType() == Material.SPAWNER) return;
+        if (block == null || block.getType() != Material.SPAWNER) return;
 
         if (event.getPlayer().hasPermission("fix64.eggconversion")) return;
         
         ItemStack itemInHand = event.getItem();
         if (itemInHand != null && itemInHand.hasItemMeta()) {
             ItemMeta meta = itemInHand.getItemMeta();
-            if (meta instanceof SpawnEggMeta)
+            if ((meta instanceof SpawnEggMeta)||itemInHand.getType().toString().contains("SPAWN_EGG"))
                 event.setCancelled(true);
         }
     }
