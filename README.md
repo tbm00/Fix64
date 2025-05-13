@@ -57,7 +57,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Config
 ```
-# Fix64 v1.7.1 by @tbm00
+# Fix64 v1.7.2 by @tbm00
 # https://github.com/tbm00/Fix64/
 
 ### Prevents spawners from dropping exp when broken, thus disabling exp dupes (includes 1.21 trial spawners)
