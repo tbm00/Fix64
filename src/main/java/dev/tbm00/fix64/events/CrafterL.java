@@ -12,6 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.CrafterInventory;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import dev.tbm00.fix64.Fix64;
@@ -53,9 +55,8 @@ public class CrafterL implements Listener {
         if (block == null || block.getType() != Material.CRAFTER) return;
 
         BlockState state = block.getState();
-        if (!(state instanceof Crafter)) return;
-        Crafter crafter = (Crafter) state;
-        CrafterInventory inv = (CrafterInventory) crafter.getInventory();
+        if (!(state instanceof InventoryHolder holder)) return;
+        Inventory inv = holder.getInventory(); 
 
         for (int slot = 0; slot < 10; slot++) {
             ItemStack item = inv.getItem(slot);
