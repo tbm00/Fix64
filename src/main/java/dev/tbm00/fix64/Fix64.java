@@ -31,6 +31,7 @@ public final class Fix64 extends JavaPlugin {
         Rename rename = new Rename(fileConfiguration, this);
         Portal portal = new Portal(fileConfiguration, this);
         Spawner spawner = new Spawner(fileConfiguration, this);
+        CrafterL crafter = new CrafterL(fileConfiguration, this);
         RedstonePlace redstonePlace = new RedstonePlace(fileConfiguration, this);
         ChunkUnloader chunkUnloader = new ChunkUnloader(fileConfiguration, this);
         log("Listeners initialized.");
@@ -39,11 +40,12 @@ public final class Fix64 extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(rename, this);
         this.getServer().getPluginManager().registerEvents(portal, this);
         this.getServer().getPluginManager().registerEvents(spawner, this);
+        this.getServer().getPluginManager().registerEvents(crafter, this);
         this.getServer().getPluginManager().registerEvents(redstonePlace, this);
         log("Listeners registered.");
 
         // Register Commands
-        Fix64Command fix64Command = new Fix64Command(rename, portal, spawner, chunkUnloader, redstonePlace);
+        Fix64Command fix64Command = new Fix64Command(rename, portal, spawner, crafter, chunkUnloader, redstonePlace);
         PluginCommand fix64 = this.getCommand("fix64");
         fix64.setTabCompleter(fix64Command);
         fix64.setExecutor(fix64Command);
