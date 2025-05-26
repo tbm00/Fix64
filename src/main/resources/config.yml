@@ -13,6 +13,9 @@ enableBlockTrialSpawnerBreak: true
 ### Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 fixLightTrapdoorDupe: true
 
+### Prevents players from opening crafters with map inside, thus preventing client-crashing booby traps
+fixCrafterMapCrash: true
+
 ### Unloads all loaded chunks without nearby players on interval, thus minimizing chunk loaders
 chunkUnloader:
   enabled: true

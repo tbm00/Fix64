@@ -8,8 +8,9 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Configurable Features
 - **Disable Chunk Loaders:** unload unused chunks on an interval, and/or disable entity portal usage
-- **Prevent Item Renaming:** block specific items and/or names
-- **Prevent Light Block Redstone Dupe:** stop placing redstone on trapdoors with lights above it
+- **Prevent Item Renaming:** blacklist specific items and/or names
+- **Prevent Light Block Redstone Dupe:** prevent placing redstone on trapdoors with lights above it
+- **Prevent Crafter Map Crash Booby Traps:** prevent opening crafter with maps inside
 - **Prevent Breaking Trial Spawners**
 - **Disable Spawner-Egg Conversion**
 - **Disable Spawner Exp Orbs**
@@ -22,6 +23,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - Prevents players from breaking trial spawners
 - Prevents players from changing spawner mob types with spawn eggs
 - Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
+- Prevents players from opening crafters with map(s) inside, thus preventing client-crashing booby traps
 - Unloads chunks without nearby players on interval, thus minimizing chunk loaders
 
 #### BlockSpawnerEXP  
@@ -44,7 +46,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Dependencies
 - **Java 17+**: REQUIRED
-- **Spigot 1.20.4+**: UNTESTED ON OLDER VERSIONS
+- **Spigot 1.21+**: UNTESTED ON OLDER VERSIONS
 
 
 ## Commands & Permissions
@@ -71,6 +73,9 @@ enableBlockTrialSpawnerBreak: true
 
 ### Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 fixLightTrapdoorDupe: true
+
+### Prevents players from opening crafters with map inside, thus preventing client-crashing booby traps
+fixCrafterMapCrash: true
 
 ### Unloads all loaded chunks without nearby players on interval, thus minimizing chunk loaders
 chunkUnloader:
