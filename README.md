@@ -46,7 +46,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Dependencies
 - **Java 17+**: REQUIRED
-- **Spigot 1.20.4+**: UNTESTED ON OLDER VERSIONS
+- **Spigot 1.21+**: UNTESTED ON OLDER VERSIONS
 
 
 ## Commands & Permissions
