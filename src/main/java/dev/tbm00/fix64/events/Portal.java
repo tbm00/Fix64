@@ -25,6 +25,7 @@ public class Portal implements Listener {
     public void loadConfig() {
         try { 
             this.enabled = fileConfiguration.getBoolean("enablePortalGaurd");
+            fix64.getLogger().info("enablePortalGaurd is set to: " + enabled);
         } catch (Exception e) {
             fix64.getLogger().warning("Exception getting enablePortalGaurd!");
 			return;
