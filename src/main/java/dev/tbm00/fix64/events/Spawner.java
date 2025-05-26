@@ -34,18 +34,21 @@ public class Spawner implements Listener {
     public void loadConfig() {
         try { 
             this.expBlockEnabled = fileConfiguration.getBoolean("enableBlockSpawnerEXP");
+            fix64.getLogger().info("enableBlockSpawnerEXP is set to: " + expBlockEnabled);
         } catch (Exception e) {
             fix64.getLogger().warning("Exception getting enableBlockSpawnerEXP!");
 			return;
         }
         try { 
             this.eggBlockEnabled = fileConfiguration.getBoolean("enableBlockSpawnerConversion");
+            fix64.getLogger().info("enableBlockSpawnerConversion is set to: " + eggBlockEnabled);
         } catch (Exception e) {
             fix64.getLogger().warning("Exception getting enableBlockSpawnerConversion!");
 			return;
         }
         try { 
             this.trialBlockEnabled = fileConfiguration.getBoolean("enableBlockTrialSpawnerBreak");
+            fix64.getLogger().info("enableBlockTrialSpawnerBreak is set to: " + trialBlockEnabled);
         } catch (Exception e) {
             fix64.getLogger().warning("Exception getting enableBlockTrialSpawnerBreak!");
 			return;

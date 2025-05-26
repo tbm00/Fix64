@@ -77,11 +77,11 @@ fixLightTrapdoorDupe: true
 ### Prevents players from opening crafters with map inside, thus preventing client-crashing booby traps
 fixCrafterMapCrash: true
 
-### Unloads chunks without nearby players on interval, thus minimizing chunk loaders
+### Unloads all loaded chunks without nearby players on interval, thus minimizing chunk loaders
 chunkUnloader:
   enabled: true
   timer: 480 # seconds
-  radius: 16 # chunks
+  radius: 16 # chunks around each player will not be unloaded
 
 ### Prevents entities from teleporting in portals, thus disabling some chunk loaders
 enablePortalGaurd: true

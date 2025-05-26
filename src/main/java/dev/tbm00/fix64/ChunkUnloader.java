@@ -13,6 +13,7 @@ public class ChunkUnloader {
     private boolean unloaderEnabled;
     private int ticksBetween;
     private int chunkRadius;
+    private int radiusSquared;
 
     public ChunkUnloader(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
@@ -36,6 +37,7 @@ public class ChunkUnloader {
         }
         try { 
             this.chunkRadius = fileConfiguration.getInt("chunkUnloader.radius");
+            this.radiusSquared = chunkRadius*chunkRadius;
         } catch (Exception e) {
             fix64.getLogger().warning("Exception getting chunkUnloader.radius!");
 			return;
@@ -75,8 +77,7 @@ public class ChunkUnloader {
 
     private boolean isChunkInUse(Chunk chunk) {
         int chunkX = chunk.getX(),
-            chunkZ = chunk.getZ(),
-            radiusSquared = chunkRadius*chunkRadius;
+            chunkZ = chunk.getZ();
         World world = chunk.getWorld();
         
         for (Player player : Bukkit.getOnlinePlayers()) {

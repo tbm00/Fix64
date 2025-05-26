@@ -32,6 +32,7 @@ public class Rename implements Listener {
     public void loadConfig() {
         try { 
             this.enabled = fileConfiguration.getBoolean("enableStopRenaming");
+            fix64.getLogger().info("enableStopRenaming is set to: " + enabled);
         } catch (Exception e) {
             fix64.getLogger().warning("Exception getting enableStopRenaming!");
 			return;
