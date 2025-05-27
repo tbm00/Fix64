@@ -10,7 +10,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - **Disable Chunk Loaders:** unload unused chunks on an interval, and/or disable entity portal usage
 - **Prevent Item Renaming:** blacklist specific items and/or names
 - **Prevent Light Block Redstone Dupe:** prevent placing redstone on trapdoors with lights above it
-- **Prevent Crafter Map Crash Booby Traps:** prevent opening crafter with maps inside
+- **Prevent Crafter Map Crash Booby Traps:** prevent opening crafters with maps inside
 - **Prevent Breaking Trial Spawners**
 - **Disable Spawner-Egg Conversion**
 - **Disable Spawner Exp Orbs**
