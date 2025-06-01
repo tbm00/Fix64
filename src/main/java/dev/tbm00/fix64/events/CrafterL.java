@@ -4,14 +4,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-import org.bukkit.block.Crafter;
-//import org.bukkit.block.data.type.Crafter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.CrafterInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -59,12 +56,14 @@ public class CrafterL implements Listener {
         Inventory inv = holder.getInventory(); 
 
         for (int slot = 0; slot < 10; slot++) {
-            ItemStack item = inv.getItem(slot);
-            if (item != null && (item.getType() == Material.FILLED_MAP || item.getType() == Material.MAP)) {
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.RED + "This crafter has been booby-trapped!");
-                return;
-            }
+            try {
+                ItemStack item = inv.getItem(slot);
+                if (item != null && (item.getType() == Material.FILLED_MAP || item.getType() == Material.MAP)) {
+                    event.setCancelled(true);
+                    event.getPlayer().sendMessage(ChatColor.RED + "This crafter has been booby-trapped!");
+                    return;
+                }
+            } catch (Exception ignored) {}
         }
     }
 }
