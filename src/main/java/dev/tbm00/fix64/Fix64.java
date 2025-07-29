@@ -33,6 +33,7 @@ public final class Fix64 extends JavaPlugin {
         Spawner spawner = new Spawner(fileConfiguration, this);
         CrafterL crafter = new CrafterL(fileConfiguration, this);
         RedstonePlace redstonePlace = new RedstonePlace(fileConfiguration, this);
+        BundleUsage bundleUsage = new BundleUsage(fileConfiguration, this);
         ChunkUnloader chunkUnloader = new ChunkUnloader(fileConfiguration, this);
         log("Listeners initialized.");
 
@@ -42,6 +43,7 @@ public final class Fix64 extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(spawner, this);
         this.getServer().getPluginManager().registerEvents(crafter, this);
         this.getServer().getPluginManager().registerEvents(redstonePlace, this);
+        this.getServer().getPluginManager().registerEvents(bundleUsage, this);
         log("Listeners registered.");
 
         // Register Commands
@@ -52,7 +54,7 @@ public final class Fix64 extends JavaPlugin {
         log("Commands registered.");
     }
 
-    private void log(String... strings) {
+    public void log(String... strings) {
 		for (String s : strings)
             getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + s);
 	}
