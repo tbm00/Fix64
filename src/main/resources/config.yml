@@ -19,7 +19,7 @@ fixCrafterMapCrash: true
 ### Prevents newbies (less than 4hr playtime) from using bundles (thus preventing 1.21.4 bundle crashes)
 fixBundleCrasher: true
 
-### Disable bundles entirely (thus preventing 1.21.4 bundle dupes)
+### Disable bundles entirely (thus preventing 1.21.4 bundle dupes & crashes)
 disableBundles: true
 
 ### Unloads all loaded chunks without nearby players on interval, thus minimizing chunk loaders
