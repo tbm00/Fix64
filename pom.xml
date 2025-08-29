@@ -6,7 +6,7 @@
 
     <groupId>dev.tbm00</groupId>
     <artifactId>Fix64</artifactId>
-    <version>1.9.2</version>
+    <version>1.9.3</version>
     <packaging>jar</packaging>
 
     <name>Fix64</name>

@@ -1,9 +1,12 @@
 package dev.tbm00.fix64.events;
 
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Statistic;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -20,6 +23,7 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.inventory.ItemStack;
 
 import dev.tbm00.fix64.Fix64;
 
@@ -28,6 +32,8 @@ public class Bundle implements Listener {
     private FileConfiguration fileConfiguration;
     private boolean fixBundleCrasherEnabled;
     private boolean disableBundlesEnabled;
+    private long msgCooldown = 10_000L;
+    private final Map<UUID, Long> lastMsgMap = new ConcurrentHashMap<>();
 
     public Bundle(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
@@ -61,25 +67,43 @@ public class Bundle implements Listener {
         justMessage(player);
     }
 
-    private final void justMessage(HumanEntity player) {
-        player.sendMessage("§cDue to 1.21.4 bundle dupes and crashes, bundles are disabled until we update to 1.21.5+!");
+    private final void justMessage(HumanEntity offender) {
+        if (shouldNotify(offender)) {
+            offender.sendMessage("§cDue to 1.21.4 bundle dupes and crashes, bundles are disabled until we update to 1.21.5+!");
+            fix64.log("§c" + offender.getName() + " tried using a bundle!");
+        }
 
-        fix64.log("§c" + player.getName() + "tried using a bundle!");
-        for (Player onlinePlayer : fix64.getServer().getOnlinePlayers()) {
-            if (hasStaffPerms(onlinePlayer)) {
-                onlinePlayer.sendMessage("§c" + player.getName() +" has or is using a bundle!\n");
-                if (disableBundlesEnabled) {
-                    onlinePlayer.sendMessage("§4" + " !!! §6Please do this: "  + "§4!!!" + 
-                                   "\n§6- take it out of their inv,\n" +  
-                                   "§6- empty it and return the contained items,\n" +
-                                   "§6- put their bundle in a chest inside their claim, &\n" +
-                                   "§6- tell them not to touch it until we update\n" +
-                                   "§cBundles are disabled to prevent 1.21.4 dupes; carrying one can break pickup/drop behavior and more!\n" +
-                                   "§6    - forCashmoney"
-                                   );
-                }
+        // Notify staff individually, each with their own cooldown
+        for (Player staff : fix64.getServer().getOnlinePlayers()) {
+            if (!hasStaffPerms(staff)) continue;
+            if (!shouldNotify(staff)) continue;
+
+            staff.sendMessage("§c" + offender.getName() + " has or is using a bundle!");
+            if (disableBundlesEnabled) {
+                staff.sendMessage(
+                    "§4!!! §6Please do this: §4!!!" +
+                    "\n§6 - take it out of their inv," +
+                    "\n§6 - empty it and return the contained items," +
+                    "\n§6 - put their bundle in a chest inside their claim, &" +
+                    "\n§6 - tell them not to touch it until we update" +
+                    "\n§cBundles are disabled to prevent 1.21.4 dupes; carrying one can break pickup/drop behavior and more!" +
+                    "\n§c   - forCashmoney"
+                );
             }
         }
+
+    }
+
+    private boolean shouldNotify(HumanEntity recipient) {
+        if (recipient == null) return false;
+        long now = System.currentTimeMillis();
+        UUID id = recipient.getUniqueId();
+        Long last = lastMsgMap.get(id);
+        if (last != null && (now - last) < msgCooldown) {
+            return false; // still on cooldown
+        }
+        lastMsgMap.put(id, now);
+        return true;
     }
 
     private static boolean isBundle(ItemStack item) {
