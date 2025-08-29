@@ -81,7 +81,7 @@ public class Bundle implements Listener {
             staff.sendMessage("§c" + offender.getName() + " has or is using a bundle!");
             if (disableBundlesEnabled) {
                 staff.sendMessage(
-                    "§4!!! §6Please do this: §4!!!" +
+                    "§4!!! §eTo staff, §6please do this: §4!!!" +
                     "\n§6 - take it out of their inv," +
                     "\n§6 - empty it and return the contained items," +
                     "\n§6 - put their bundle in a chest inside their claim, &" +
