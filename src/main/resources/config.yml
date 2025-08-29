@@ -1,4 +1,4 @@
-# Fix64 v1.9.0 by @tbm00
+# Fix64 v1.9.1 by @tbm00
 # https://github.com/tbm00/Fix64/
 
 ### Prevents spawners from dropping exp when broken, thus disabling exp dupes (includes 1.21 trial spawners)
@@ -16,8 +16,11 @@ fixLightTrapdoorDupe: true
 ### Prevents players from opening crafters with map inside, thus preventing client-crashing booby traps
 fixCrafterMapCrash: true
 
-### Prevents newbies (less than 4hr playtime) from using bundles (thus preventing bundle crashes)
+### Prevents newbies (less than 4hr playtime) from using bundles (thus preventing 1.21.4 bundle crashes)
 fixBundleCrasher: true
+
+### Disable bundles entirely (thus preventing 1.21.4 bundle dupes)
+disableBundles: true
 
 ### Unloads all loaded chunks without nearby players on interval, thus minimizing chunk loaders
 chunkUnloader:

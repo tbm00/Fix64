@@ -14,3 +14,6 @@ permissions:
   fix64.eggconversion:
     description: Ability to convert spawners with spawn eggs
     default: op
+  fix64.usebundles:
+    description: Ability to use always use bundles
+    default: op

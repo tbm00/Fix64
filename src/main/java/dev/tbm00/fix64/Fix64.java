@@ -1,6 +1,7 @@
 package dev.tbm00.fix64;
 
 import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -33,7 +34,7 @@ public final class Fix64 extends JavaPlugin {
         Spawner spawner = new Spawner(fileConfiguration, this);
         CrafterL crafter = new CrafterL(fileConfiguration, this);
         RedstonePlace redstonePlace = new RedstonePlace(fileConfiguration, this);
-        BundleUsage bundleUsage = new BundleUsage(fileConfiguration, this);
+        Bundle bundleUsage = new Bundle(fileConfiguration, this);
         ChunkUnloader chunkUnloader = new ChunkUnloader(fileConfiguration, this);
         log("Listeners initialized.");
 
@@ -52,6 +53,16 @@ public final class Fix64 extends JavaPlugin {
         fix64.setTabCompleter(fix64Command);
         fix64.setExecutor(fix64Command);
         log("Commands registered.");
+
+        // Disable recipes
+        if (fileConfiguration.getBoolean("disableBundles", false)) {
+            try {
+                getServer().removeRecipe(NamespacedKey.minecraft("bundle"));
+                log("Bundle recipe disabled.");
+            } catch (Throwable thrown) {
+                getLogger().warning("Failed to remove bundle recipe: " + thrown.getMessage());
+            }
+        }
     }
 
     public void log(String... strings) {

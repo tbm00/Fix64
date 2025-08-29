@@ -11,7 +11,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - **Prevent Item Renaming:** blacklist specific items and/or names
 - **Prevent Light Block Redstone Dupe:** prevent placing redstone on trapdoors with lights above it
 - **Prevent Crafter Map Crash Booby Traps:** prevent opening crafters with maps inside
-- **Prevent Bundle Crashing:** prevent newbies from crashing server with 1.21.X bundle crash.
+- **Prevent Bundle Crashing & Duping:** disable bundles for newbies or everyone
 - **Prevent Breaking Trial Spawners**
 - **Disable Spawner-Egg Conversion**
 - **Disable Spawner Exp Orbs**
@@ -56,11 +56,12 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 #### Permissions
 - `fix64.reload` Ability to use reload the config *(default: OP)*
 - `fix64.eggconversion` Ability to convert spawners with spawn eggs *(default: OP)*
+- `fix64.usebundles` Ability to use always use bundles *(default: OP)*
 
 
 ## Config
 ```
-# Fix64 v1.9.0 by @tbm00
+# Fix64 v1.9.1 by @tbm00
 # https://github.com/tbm00/Fix64/
 
 ### Prevents spawners from dropping exp when broken, thus disabling exp dupes (includes 1.21 trial spawners)
@@ -78,8 +79,11 @@ fixLightTrapdoorDupe: true
 ### Prevents players from opening crafters with map inside, thus preventing client-crashing booby traps
 fixCrafterMapCrash: true
 
-### Prevents newbies (less than 4hr playtime) from using bundles (thus preventing bundle crashes)
+### Prevents newbies (less than 4hr playtime) from using bundles (thus preventing 1.21.4 bundle crashes)
 fixBundleCrasher: true
+
+### Disable bundles entirely (thus preventing 1.21.4 bundle dupes)
+disableBundles: true
 
 ### Unloads all loaded chunks without nearby players on interval, thus minimizing chunk loaders
 chunkUnloader:
