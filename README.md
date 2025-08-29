@@ -54,6 +54,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 #### Commands
 - `/fix64 reload` Reload the plugin's config
 #### Permissions
+- `fix64.staff` Get staff/admin notifications *(default: OP)*
 - `fix64.reload` Ability to use reload the config *(default: OP)*
 - `fix64.eggconversion` Ability to convert spawners with spawn eggs *(default: OP)*
 - `fix64.usebundles` Ability to use always use bundles *(default: OP)*
@@ -61,7 +62,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Config
 ```
-# Fix64 v1.9.1 by @tbm00
+# Fix64 v1.9.2 by @tbm00
 # https://github.com/tbm00/Fix64/
 
 ### Prevents spawners from dropping exp when broken, thus disabling exp dupes (includes 1.21 trial spawners)

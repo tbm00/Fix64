@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -27,7 +28,6 @@ public class Bundle implements Listener {
     private FileConfiguration fileConfiguration;
     private boolean fixBundleCrasherEnabled;
     private boolean disableBundlesEnabled;
-    private final String disabledBundlesStr = "§cDue to a new bundle dupe, bundles are disabled until we update to 1.21.5+!";
 
     public Bundle(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
@@ -56,12 +56,49 @@ public class Bundle implements Listener {
         loadConfig();
     }
 
+    private final void cancelAndMessage(Cancellable event, HumanEntity player) {
+        event.setCancelled(true);
+        justMessage(player);
+    }
+
+    private final void justMessage(HumanEntity player) {
+        player.sendMessage("§cDue to 1.21.4 bundle dupes and crashes, bundles are disabled until we update to 1.21.5+!");
+
+        fix64.log("§c" + player.getName() + "tried using a bundle!");
+        for (Player onlinePlayer : fix64.getServer().getOnlinePlayers()) {
+            if (hasStaffPerms(onlinePlayer)) {
+                onlinePlayer.sendMessage("§c" + player.getName() +" has or is using a bundle!\n");
+                if (disableBundlesEnabled) {
+                    onlinePlayer.sendMessage("§4" + " !!! §6Please do this: "  + "§4!!!" + 
+                                   "\n§6- take it out of their inv,\n" +  
+                                   "§6- empty it and return the contained items,\n" +
+                                   "§6- put their bundle in a chest inside their claim, &\n" +
+                                   "§6- tell them not to touch it until we update\n" +
+                                   "§cBundles are disabled to prevent 1.21.4 dupes; carrying one can break pickup/drop behavior and more!\n" +
+                                   "§6    - forCashmoney"
+                                   );
+                }
+            }
+        }
+    }
+
     private static boolean isBundle(ItemStack item) {
         return item != null && item.getType() == Material.BUNDLE;
     }
 
+    private static boolean isCarryingBundle(Player p) {
+        for (int i = 0; i < p.getInventory().getSize(); i++) {
+            if (isBundle(p.getInventory().getItem(i))) return true;
+        }
+        return isBundle(p.getInventory().getItemInOffHand());
+    }
+
     private static boolean hasBundlePerms(HumanEntity entity) {
         return entity.hasPermission("fix64.usebundles");
+    }
+
+    private static boolean hasStaffPerms(HumanEntity entity) {
+        return entity.hasPermission("fix64.staff");
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -73,8 +110,7 @@ public class Bundle implements Listener {
 
             // disableBundlesEnabled
             if (disableBundlesEnabled) {
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(disabledBundlesStr);
+                cancelAndMessage(event, player);
             } 
 
             // fixBundleCrasherEnabled
@@ -91,9 +127,7 @@ public class Bundle implements Listener {
                         current_play_ticks = 0;
                     }
                 } if (current_play_ticks < 288000) {
-                    event.setCancelled(true);
-                    event.getPlayer().sendMessage("§cDue to assholes crashing the server with a Mojang bundle bug, bundles are disabled for newbies!");
-                    fix64.log(ChatColor.RED + "Newbie tried to use a bundle: " + player.getName());
+                    cancelAndMessage(event, player);
                 }
             }
         }
@@ -102,8 +136,7 @@ public class Bundle implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onInvClick(InventoryClickEvent event) {
         if (disableBundlesEnabled && !hasBundlePerms(event.getWhoClicked()) && (isBundle(event.getCursor()) || isBundle(event.getCurrentItem()))) {
-            event.setCancelled(true);
-            event.getWhoClicked().sendMessage(disabledBundlesStr);
+            cancelAndMessage(event, event.getWhoClicked());
         }
     }
 
@@ -111,13 +144,12 @@ public class Bundle implements Listener {
     public void onInvDrag(InventoryDragEvent event) {
         if (disableBundlesEnabled && !hasBundlePerms(event.getWhoClicked())) {
             if (isBundle(event.getOldCursor())) {
-                event.setCancelled(true);
-                event.getWhoClicked().sendMessage(disabledBundlesStr);
+                cancelAndMessage(event, event.getWhoClicked());
+                return;
             } else {
                 for (ItemStack item : event.getNewItems().values()) {
                     if (isBundle(item)) {
-                        event.setCancelled(true);
-                        event.getWhoClicked().sendMessage(disabledBundlesStr);
+                        cancelAndMessage(event, event.getWhoClicked());
                         return;
                     }
                 }
@@ -135,7 +167,7 @@ public class Bundle implements Listener {
 
             if (viewer != null && hasBundlePerms(viewer)) return;
             event.setCancelled(true);
-            if (viewer != null) viewer.sendMessage(disabledBundlesStr);
+            if (viewer != null) justMessage(viewer);
         }
     }
 
@@ -145,18 +177,23 @@ public class Bundle implements Listener {
         if (!(event.getEntity() instanceof Player)) return;
 
         if (event.getItem().getItemStack().getType() == Material.BUNDLE && !hasBundlePerms((Player) event.getEntity())) {
-            event.setCancelled(true);
-            ((Player) event.getEntity()).sendMessage(disabledBundlesStr);
+            cancelAndMessage(event, ((Player) event.getEntity()));
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onDrop(PlayerDropItemEvent event) {
-        if (!disableBundlesEnabled) return;
+        if (!disableBundlesEnabled || hasBundlePerms(event.getPlayer())) return;
 
-        if (event.getItemDrop().getItemStack().getType() == Material.BUNDLE && !hasBundlePerms(event.getPlayer())) {
-            event.setCancelled(true);
-            event.getPlayer().sendMessage(disabledBundlesStr);
+        final Player player = event.getPlayer();
+
+        boolean tryingToDropBundle =
+            event.getItemDrop() != null &&
+            event.getItemDrop().getItemStack() != null &&
+            isBundle(event.getItemDrop().getItemStack());
+
+        if (tryingToDropBundle || isCarryingBundle(player)) {
+            cancelAndMessage(event, player);
         }
     }
 
@@ -165,8 +202,7 @@ public class Bundle implements Listener {
         if (!disableBundlesEnabled) return;
 
         if ((isBundle(event.getMainHandItem()) || isBundle(event.getOffHandItem())) && !hasBundlePerms(event.getPlayer())) {
-            event.setCancelled(true);
-            event.getPlayer().sendMessage(disabledBundlesStr);
+            cancelAndMessage(event, event.getPlayer());
         }
     }
 
@@ -181,7 +217,7 @@ public class Bundle implements Listener {
             } else {
                 event.getInventory().setResult(null);
                 if (!event.getViewers().isEmpty()) {
-                    event.getViewers().get(0).sendMessage(disabledBundlesStr);
+                    justMessage(event.getViewers().get(0));
                 }
             }
         }
@@ -193,8 +229,7 @@ public class Bundle implements Listener {
 
         final ItemStack current = event.getCurrentItem();
         if (isBundle(current) && !hasBundlePerms(event.getWhoClicked())) {
-            event.setCancelled(true);
-            event.getWhoClicked().sendMessage(disabledBundlesStr);
+            cancelAndMessage(event, event.getWhoClicked());
         }
     }
 }

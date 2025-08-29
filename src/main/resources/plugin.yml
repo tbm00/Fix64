@@ -17,3 +17,6 @@ permissions:
   fix64.usebundles:
     description: Ability to use always use bundles
     default: op
+  fix64.staff:
+    description: Get staff/admin notifications
+    default: op
