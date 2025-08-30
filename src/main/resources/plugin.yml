@@ -15,7 +15,7 @@ permissions:
     description: Ability to convert spawners with spawn eggs
     default: op
   fix64.usebundles:
-    description: Ability to use always use bundles
+    description: Ability to use bundles when disabled or prevented
     default: op
   fix64.staff:
     description: Get staff/admin notifications

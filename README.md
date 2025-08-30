@@ -57,7 +57,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - `fix64.staff` Get staff/admin notifications *(default: OP)*
 - `fix64.reload` Ability to use reload the config *(default: OP)*
 - `fix64.eggconversion` Ability to convert spawners with spawn eggs *(default: OP)*
-- `fix64.usebundles` Ability to use always use bundles *(default: OP)*
+- `fix64.usebundles` Ability to use bundles when disabled or prevented *(default: OP)*
 
 
 ## Config
