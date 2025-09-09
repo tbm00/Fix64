@@ -13,6 +13,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - **Prevent Crafter Map Crash Booby Traps:** prevent opening crafters with maps inside
 - **Prevent Bundle Crashing & Duping:** disable bundles for newbies or everyone
 - **Prevent Breaking Trial Spawners**
+- **Prevent Tripwire+Piston Dupes**
 - **Disable Spawner-Egg Conversion**
 - **Disable Spawner Exp Orbs**
 
@@ -26,6 +27,8 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 - Prevents players from using bundles, thus minimizing dupes and server crashes
 - Prevents players from opening crafters with map(s) inside, thus preventing client-crashing booby traps
+- Prevents players from placing tripwire & string nearby pistons, and vice-a-versa
+- Prevents pistons from working nearby tripwire & string, thus disabling some dupe methods
 - Unloads chunks without nearby players on interval, thus minimizing chunk loaders
 
 #### BlockSpawnerEXP  
@@ -63,17 +66,17 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Config
 ```
-# Fix64 v1.9.3 by @tbm00
+# Fix64 v1.9.4 by @tbm00
 # https://github.com/tbm00/Fix64/
 
 ### Prevents spawners from dropping exp when broken, thus disabling exp dupes (includes 1.21 trial spawners)
-enableBlockSpawnerEXP: true
+disableSpawnerEXP: true
 
 ### Prevents players from changing spawner mob types with spawn eggs
-enableBlockSpawnerConversion: true
+disableSpawnerConversion: true
 
 ### Prevents players from breaking trial spawners
-enableBlockTrialSpawnerBreak: true
+disableTrialSpawnerBreak: true
 
 ### Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 fixLightTrapdoorDupe: true
@@ -82,10 +85,13 @@ fixLightTrapdoorDupe: true
 fixCrafterMapCrash: true
 
 ### Prevents newbies (less than 4hr playtime) from using bundles (thus preventing 1.21.4 bundle crashes)
-fixBundleCrasher: true
+fixBundleCrash: true
 
-### Disable bundles entirely (thus preventing 1.21.4 bundle dupes & crashes)
+### Disables bundles entirely (thus preventing 1.21.4 bundle dupes & crashes)
 disableBundles: true
+
+### Disables pistons from operating nearby tripwire & string, and prevents placement nearby one another (thus preventing some dupe methods)
+disablePistonsNearTripwire: true
 
 ### Unloads all loaded chunks without nearby players on interval, thus minimizing chunk loaders
 chunkUnloader:

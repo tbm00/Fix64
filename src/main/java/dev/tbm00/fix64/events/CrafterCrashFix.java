@@ -15,12 +15,12 @@ import org.bukkit.inventory.ItemStack;
 
 import dev.tbm00.fix64.Fix64;
 
-public class CrafterL implements Listener {
+public class CrafterCrashFix implements Listener {
     private final Fix64 fix64;
     private FileConfiguration fileConfiguration;
     private boolean enabled;
 
-    public CrafterL(FileConfiguration fileConfiguration, Fix64 fix64) {
+    public CrafterCrashFix(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
         this.fix64 = fix64;
         loadConfig();
@@ -37,7 +37,6 @@ public class CrafterL implements Listener {
     }
 
     public void reloadConfig() {
-        fix64.reloadConfig();
         this.fileConfiguration = fix64.getConfig();
         loadConfig();
     }

@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import dev.tbm00.fix64.Fix64;
 
-public class Rename implements Listener {
+public class StopRenaming implements Listener {
     private final Fix64 fix64;
     private FileConfiguration fileConfiguration;
     private boolean enabled;
@@ -23,7 +23,7 @@ public class Rename implements Listener {
     private EnumSet<Material> bannedMaterials = EnumSet.noneOf(Material.class);
     private boolean banAll;
 
-    public Rename(FileConfiguration fileConfiguration, Fix64 fix64) {
+    public StopRenaming(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
         this.fix64 = fix64;
         loadConfig();
@@ -52,7 +52,6 @@ public class Rename implements Listener {
     }
 
     public void reloadConfig() {
-        fix64.reloadConfig();
         this.fileConfiguration = fix64.getConfig();
         loadConfig();
     }

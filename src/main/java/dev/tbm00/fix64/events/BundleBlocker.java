@@ -1,6 +1,8 @@
 package dev.tbm00.fix64.events;
 
+import java.util.EnumSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,15 +29,16 @@ import org.bukkit.inventory.ItemStack;
 
 import dev.tbm00.fix64.Fix64;
 
-public class Bundle implements Listener {
+public class BundleBlocker implements Listener {
     private final Fix64 fix64;
     private FileConfiguration fileConfiguration;
-    private boolean fixBundleCrasherEnabled;
+    private boolean fixBundleCrashEnabled;
     private boolean disableBundlesEnabled;
     private long msgCooldown = 10_000L;
     private final Map<UUID, Long> lastMsgMap = new ConcurrentHashMap<>();
+    private static Set<Material> BUNDLES = EnumSet.noneOf(Material.class);
 
-    public Bundle(FileConfiguration fileConfiguration, Fix64 fix64) {
+    public BundleBlocker(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
         this.fix64 = fix64;
         loadConfig();
@@ -43,10 +46,10 @@ public class Bundle implements Listener {
 
     public void loadConfig() {
         try { 
-            this.fixBundleCrasherEnabled = fileConfiguration.getBoolean("fixBundleCrasher");
-            fix64.getLogger().info("fixBundleCrasher is set to: " + fixBundleCrasherEnabled);
+            this.fixBundleCrashEnabled = fileConfiguration.getBoolean("fixBundleCrash", fileConfiguration.getBoolean("fixBundleCrasher"));
+            fix64.getLogger().info("fixBundleCrash is set to: " + fixBundleCrashEnabled);
         } catch (Exception e) {
-            fix64.getLogger().warning("Exception getting fixBundleCrasher!");
+            fix64.getLogger().warning("Exception getting fixBundleCrash!");
         }
         try { 
             this.disableBundlesEnabled = fileConfiguration.getBoolean("disableBundles");
@@ -54,10 +57,17 @@ public class Bundle implements Listener {
         } catch (Exception e) {
             fix64.getLogger().warning("Exception getting disableBundles!");
         }
+        if (disableBundlesEnabled || fixBundleCrashEnabled) {
+            for (Material material : Material.values()) {
+                if (material.name().endsWith("_BUNDLE")) {
+                    BUNDLES.add(material);
+                }
+                BUNDLES.add(Material.BUNDLE);
+            }
+        }
     }
 
     public void reloadConfig() {
-        fix64.reloadConfig();
         this.fileConfiguration = fix64.getConfig();
         loadConfig();
     }
@@ -107,7 +117,7 @@ public class Bundle implements Listener {
     }
 
     private static boolean isBundle(ItemStack item) {
-        return item != null && item.getType() == Material.BUNDLE;
+        return item !=null && BUNDLES.contains(item.getType());
     }
 
     private static boolean isCarryingBundle(Player p) {
@@ -127,7 +137,7 @@ public class Bundle implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBundleUsage(PlayerInteractEvent event) {
-        if (!fixBundleCrasherEnabled && !disableBundlesEnabled) return;
+        if (!fixBundleCrashEnabled && !disableBundlesEnabled) return;
 
         if (isBundle(event.getItem()) && !hasBundlePerms(event.getPlayer())) {
             Player player = event.getPlayer();
@@ -137,7 +147,7 @@ public class Bundle implements Listener {
                 cancelAndMessage(event, player);
             } 
 
-            // fixBundleCrasherEnabled
+            // fixBundleCrashEnabled
             else {
                 int current_play_ticks;
                 try {

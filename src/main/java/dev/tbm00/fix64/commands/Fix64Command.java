@@ -8,25 +8,32 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
 import dev.tbm00.fix64.ChunkUnloader;
+import dev.tbm00.fix64.Fix64;
 import dev.tbm00.fix64.events.*;
 
 public class Fix64Command implements TabExecutor {
 
     public String[] subCommands = new String[]{"reload"};
-    private Rename rename;
-    private Portal portal;
-    private Spawner spawner;
-    private CrafterL crafter;
+    private Fix64 fix64;
+    private StopRenaming rename;
+    private PortalGaurd portal;
+    private SpawnerFixes spawner;
+    private CrafterCrashFix crafter;
     private ChunkUnloader chunkUnloader;
-    private RedstonePlace redstonePlace;
+    private RedstoneTrapdoors redstonePlace;
+    private BundleBlocker bundleBlocker;
+    private TripwirePistons tripwirePistons;
 
-    public Fix64Command(Rename rename, Portal portal, Spawner spawner, CrafterL crafter, ChunkUnloader chunkUnloader, RedstonePlace redstonePlace) {
+    public Fix64Command(Fix64 fix64, StopRenaming rename, PortalGaurd portal, SpawnerFixes spawner, CrafterCrashFix crafter, ChunkUnloader chunkUnloader, RedstoneTrapdoors redstonePlace, BundleBlocker bundleBlocker, TripwirePistons tripwirePistons) {
+        this.fix64 = fix64;
         this.rename = rename;
         this.portal = portal;
         this.spawner = spawner;
         this.crafter = crafter;
         this.chunkUnloader = chunkUnloader;
         this.redstonePlace = redstonePlace;
+        this.bundleBlocker = bundleBlocker;
+        this.tripwirePistons = tripwirePistons;
     }
 
     @Override
@@ -37,12 +44,15 @@ public class Fix64Command implements TabExecutor {
         if (args.length == 1) {
             if ("reload".equals(args[0])) {
                 if (sender.hasPermission("fix64.reload")) {
+                    fix64.reloadConfig();
                     rename.reloadConfig();
                     portal.reloadConfig();
                     spawner.reloadConfig();
                     crafter.reloadConfig();
                     chunkUnloader.reloadConfig();
                     redstonePlace.reloadConfig();
+                    bundleBlocker.reloadConfig();
+                    tripwirePistons.reloadConfig();
                     sender.sendMessage(ChatColor.GREEN + "You successfully reloaded Fix64!");
                 }
                 else {

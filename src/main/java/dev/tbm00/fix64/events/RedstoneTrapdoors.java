@@ -14,13 +14,13 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 import dev.tbm00.fix64.Fix64;
 
-public class RedstonePlace implements Listener {
+public class RedstoneTrapdoors implements Listener {
     private final Fix64 fix64;
     private FileConfiguration fileConfiguration;
     private boolean enabled;
-    private Set<Material> TRAPDOORS = EnumSet.noneOf(Material.class);
+    private static Set<Material> TRAPDOORS = EnumSet.noneOf(Material.class);
 
-    public RedstonePlace(FileConfiguration fileConfiguration, Fix64 fix64) {
+    public RedstoneTrapdoors(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
         this.fix64 = fix64;
         loadConfig();
@@ -45,7 +45,6 @@ public class RedstonePlace implements Listener {
     }
 
     public void reloadConfig() {
-        fix64.reloadConfig();
         this.fileConfiguration = fix64.getConfig();
         loadConfig();
     }

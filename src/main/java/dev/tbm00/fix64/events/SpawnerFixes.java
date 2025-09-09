@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.SpawnEggMeta;
 
 import dev.tbm00.fix64.Fix64;
 
-public class Spawner implements Listener {
+public class SpawnerFixes implements Listener {
     private final Fix64 fix64;
     private FileConfiguration fileConfiguration;
     private boolean trialBlockEnabled;
@@ -25,7 +25,7 @@ public class Spawner implements Listener {
     private boolean eggBlockEnabled;
     private Set<Material> SPAWN_EGGS = EnumSet.noneOf(Material.class);
 
-    public Spawner(FileConfiguration fileConfiguration, Fix64 fix64) {
+    public SpawnerFixes(FileConfiguration fileConfiguration, Fix64 fix64) {
         this.fileConfiguration = fileConfiguration;
         this.fix64 = fix64;
         loadConfig();
@@ -33,24 +33,24 @@ public class Spawner implements Listener {
 
     public void loadConfig() {
         try { 
-            this.expBlockEnabled = fileConfiguration.getBoolean("enableBlockSpawnerEXP");
-            fix64.getLogger().info("enableBlockSpawnerEXP is set to: " + expBlockEnabled);
+            this.expBlockEnabled = fileConfiguration.getBoolean("disableSpawnerEXP", fileConfiguration.getBoolean("enableBlockSpawnerEXP"));
+            fix64.getLogger().info("disableSpawnerEXP is set to: " + expBlockEnabled);
         } catch (Exception e) {
-            fix64.getLogger().warning("Exception getting enableBlockSpawnerEXP!");
+            fix64.getLogger().warning("Exception getting disableSpawnerEXP!");
 			return;
         }
         try { 
-            this.eggBlockEnabled = fileConfiguration.getBoolean("enableBlockSpawnerConversion");
-            fix64.getLogger().info("enableBlockSpawnerConversion is set to: " + eggBlockEnabled);
+            this.eggBlockEnabled = fileConfiguration.getBoolean("disableSpawnerConversion", fileConfiguration.getBoolean("enableBlockSpawnerConversion"));
+            fix64.getLogger().info("disableSpawnerConversion is set to: " + eggBlockEnabled);
         } catch (Exception e) {
-            fix64.getLogger().warning("Exception getting enableBlockSpawnerConversion!");
+            fix64.getLogger().warning("Exception getting disableSpawnerConversion!");
 			return;
         }
         try { 
-            this.trialBlockEnabled = fileConfiguration.getBoolean("enableBlockTrialSpawnerBreak");
-            fix64.getLogger().info("enableBlockTrialSpawnerBreak is set to: " + trialBlockEnabled);
+            this.trialBlockEnabled = fileConfiguration.getBoolean("disableTrialSpawnerBreak", fileConfiguration.getBoolean("enableBlockTrialSpawnerBreak"));
+            fix64.getLogger().info("disableTrialSpawnerBreak is set to: " + trialBlockEnabled);
         } catch (Exception e) {
-            fix64.getLogger().warning("Exception getting enableBlockTrialSpawnerBreak!");
+            fix64.getLogger().warning("Exception getting disableTrialSpawnerBreak!");
 			return;
         }
         if (eggBlockEnabled) {
@@ -63,7 +63,6 @@ public class Spawner implements Listener {
     }
 
     public void reloadConfig() {
-        fix64.reloadConfig();
         this.fileConfiguration = fix64.getConfig();
         loadConfig();
     }

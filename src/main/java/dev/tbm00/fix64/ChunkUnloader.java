@@ -96,8 +96,8 @@ public class ChunkUnloader {
     }
 
     public void reloadConfig() {
-        fix64.reloadConfig();
         this.fileConfiguration = fix64.getConfig();
         loadConfig();
+        startChunkSchedule();
     }
 }
