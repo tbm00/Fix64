@@ -1,4 +1,4 @@
-# Fix64 v1.9.4 by @tbm00
+# Fix64 v1.9.5 by @tbm00
 # https://github.com/tbm00/Fix64/
 
 ### Prevents spawners from dropping exp when broken, thus disabling exp dupes (includes 1.21 trial spawners)
@@ -9,6 +9,9 @@ disableSpawnerConversion: true
 
 ### Prevents players from breaking trial spawners
 disableTrialSpawnerBreak: true
+
+### Prevents players from breaking vault blocks
+disableVaultBreak: true
 
 ### Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 fixLightTrapdoorDupe: true

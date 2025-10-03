@@ -32,6 +32,7 @@ public final class Fix64 extends JavaPlugin {
         StopRenaming stopRenaming = new StopRenaming(fileConfiguration, this);
         PortalGaurd portalGuard = new PortalGaurd(fileConfiguration, this);
         SpawnerFixes spawnerFixes = new SpawnerFixes(fileConfiguration, this);
+        VaultProtection vaultProtection = new VaultProtection(fileConfiguration, this);
         CrafterCrashFix crafterCrashFix = new CrafterCrashFix(fileConfiguration, this);
         RedstoneTrapdoors redstoneTrapdoors = new RedstoneTrapdoors(fileConfiguration, this);
         BundleBlocker bundleBlocker = new BundleBlocker(fileConfiguration, this);
@@ -43,6 +44,7 @@ public final class Fix64 extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(stopRenaming, this);
         this.getServer().getPluginManager().registerEvents(portalGuard, this);
         this.getServer().getPluginManager().registerEvents(spawnerFixes, this);
+        this.getServer().getPluginManager().registerEvents(vaultProtection, this);
         this.getServer().getPluginManager().registerEvents(crafterCrashFix, this);
         this.getServer().getPluginManager().registerEvents(redstoneTrapdoors, this);
         this.getServer().getPluginManager().registerEvents(bundleBlocker, this);

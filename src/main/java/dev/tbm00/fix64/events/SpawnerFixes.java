@@ -69,16 +69,16 @@ public class SpawnerFixes implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (expBlockEnabled == false) return;
         Block block = event.getBlock();
-        if (
+        if (trialBlockEnabled && block.getType() == Material.TRIAL_SPAWNER) {
+            event.setCancelled(true);
+        }
+        if (expBlockEnabled == false) return;
+        else if (
             block.getType() == Material.SPAWNER ||
             block.getType() == Material.TRIAL_SPAWNER ||
             block.getType() == Material.LEGACY_MOB_SPAWNER ) {
             event.setExpToDrop(0);
-        }
-        if (trialBlockEnabled && block.getType() == Material.TRIAL_SPAWNER) {
-            event.setCancelled(true);
         }
     }
 

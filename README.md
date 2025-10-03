@@ -12,7 +12,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 - **Prevent Light Block Redstone Dupe:** prevent placing redstone on trapdoors with lights above it
 - **Prevent Crafter Map Crash Booby Traps:** prevent opening crafters with maps inside
 - **Prevent Bundle Crashing & Duping:** disable bundles for newbies or everyone
-- **Prevent Breaking Trial Spawners**
+- **Prevent Breaking Trial Spawners & Vaults**
 - **Prevent Tripwire+Piston Dupes**
 - **Disable Spawner-Egg Conversion**
 - **Disable Spawner Exp Orbs**
@@ -22,7 +22,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 #### Fix64 *- Base Plugin*  
 - **Author:** tbm00 @ https://github.com/tbm00/  
 - **Link:** https://github.com/tbm00/Fix64/  
-- Prevents players from breaking trial spawners
+- Prevents players from breaking trial spawners & vaults
 - Prevents players from changing spawner mob types with spawn eggs
 - Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 - Prevents players from using bundles, thus minimizing dupes and server crashes
@@ -66,7 +66,7 @@ Thank you to the original developers; this is a combination of EventHandlers fro
 
 ## Config
 ```
-# Fix64 v1.9.4 by @tbm00
+# Fix64 v1.9.5 by @tbm00
 # https://github.com/tbm00/Fix64/
 
 ### Prevents spawners from dropping exp when broken, thus disabling exp dupes (includes 1.21 trial spawners)
@@ -77,6 +77,9 @@ disableSpawnerConversion: true
 
 ### Prevents players from breaking trial spawners
 disableTrialSpawnerBreak: true
+
+### Prevents players from breaking vault blocks
+disableVaultBreak: true
 
 ### Prevents players from placing redstone on trapdoors, thus minimizing light block dupes
 fixLightTrapdoorDupe: true
