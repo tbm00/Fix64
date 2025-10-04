@@ -22,7 +22,7 @@ public class VaultProtection implements Listener {
 
     public void loadConfig() {
         try { 
-            this.vaultBlockEnabled = fileConfiguration.getBoolean("disableVaultBreak", fileConfiguration.getBoolean("disableVaultBreak"));
+            this.vaultBlockEnabled = fileConfiguration.getBoolean("disableVaultBreak", false);
             fix64.getLogger().info("disableVaultBreak is set to: " + vaultBlockEnabled);
         } catch (Exception e) {
             fix64.getLogger().warning("Exception getting disableVaultBreak!");
